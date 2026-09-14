@@ -1,0 +1,324 @@
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 主容器 */
+.container {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+}
+
+/* 标题区域 */
+.header {
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #f0e6d3;
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #8b9dc3;
+    font-size: 1rem;
+}
+
+/* 抽签盒子 */
+.fortune-box {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    padding: 40px 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* 结果区域 - 卡片翻转容器 */
+.result {
+    margin-bottom: 40px;
+    perspective: 1000px;
+}
+
+/* 卡片翻转动画 */
+.fortune-card {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fortune-card.flipping {
+    transform: rotateY(180deg);
+}
+
+.fortune-card .card-front,
+.fortune-card .card-back {
+    position: absolute;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 30px 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* 卡片正面 - 翻转前显示 */
+.card-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    font-size: 1.5rem;
+    color: #d4af37;
+}
+
+/* 卡片背面 - 翻转后显示结果 */
+.card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 运势等级 */
+.fortune-rank {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 15px currentColor;
+    animation: rankFadeIn 0.5s ease forwards;
+    opacity: 0;
+    animation-delay: 0.3s;
+}
+
+@keyframes rankFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 签文 */
+.fortune-text {
+    font-size: 1.1rem;
+    color: #d4af37;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: textFadeIn 0.5s ease forwards;
+    opacity: 0;
+    animation-delay: 0.5s;
+}
+
+@keyframes textFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 幸运数字 */
+.lucky-number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: numberFadeIn 0.5s ease forwards;
+    opacity: 0;
+    animation-delay: 0.7s;
+}
+
+@keyframes numberFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.lucky-number .label {
+    color: #8b9dc3;
+    font-size: 0.9rem;
+}
+
+.lucky-number .number {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #f0e6d3;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #d4af37;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* 按钮区域 */
+.action-area {
+    margin-top: 20px;
+}
+
+.draw-btn {
+    padding: 15px 50px;
+    font-size: 1.2rem;
+    color: #1a1a2e;
+    background: linear-gradient(145deg, #d4af37 0%, #f0d77e 50%, #d4af37 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+}
+
+.draw-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+}
+
+.draw-btn:active {
+    transform: translateY(0);
+}
+
+.draw-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 底部信息 */
+.footer {
+    margin-top: 30px;
+    color: #5a6a8a;
+    font-size: 0.8rem;
+}
+
+/* ==================== 响应式设计 ==================== */
+
+/* 平板设备 */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .fortune-box {
+        padding: 30px 20px;
+    }
+
+    .fortune-rank {
+        font-size: 2.2rem;
+    }
+
+    .fortune-text {
+        font-size: 1rem;
+    }
+}
+
+/* 手机设备 - 小屏幕 */
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    .header {
+        margin-bottom: 30px;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .fortune-box {
+        padding: 25px 15px;
+        border-radius: 15px;
+    }
+
+    .fortune-card .card-front,
+    .fortune-card .card-back {
+        padding: 20px 15px;
+        min-height: 280px;
+    }
+
+    .fortune-rank {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .fortune-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        padding: 12px;
+    }
+
+    .lucky-number .number {
+        font-size: 1.8rem;
+        width: 48px;
+        height: 48px;
+    }
+
+    .draw-btn {
+        padding: 12px 40px;
+        font-size: 1.1rem;
+    }
+}
+
+/* 手机设备 - 超小屏幕 */
+@media (max-width: 360px) {
+    .header h1 {
+        font-size: 1.6rem;
+    }
+
+    .fortune-rank {
+        font-size: 1.8rem;
+    }
+
+    .fortune-text {
+        font-size: 0.9rem;
+    }
+
+    .draw-btn {
+        padding: 10px 30px;
+        font-size: 1rem;
+    }
+}
